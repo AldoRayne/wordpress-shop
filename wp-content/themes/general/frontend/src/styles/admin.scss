@@ -1,10 +1,7 @@
 .wp-block-post-content .acf-block-preview {
 /* ELEMENT FILES */
-	@import 'element/_loader';
-	@import 'element/_productcard';
+
 
 /* SECTION FILES */
-	@import 'section/blog';
 	@import 'section/hero';
-	@import 'section/intro';
 }

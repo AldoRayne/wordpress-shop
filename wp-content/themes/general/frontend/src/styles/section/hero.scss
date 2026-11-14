@@ -1,3 +1,121 @@
 @import "../common/mixins";
 @import "../common/variable";
-@import "../element/productcard";
+
+.hero {
+	&__slider {
+		position: relative;
+		overflow: hidden;
+		border-radius: r(20);
+	}
+
+	&__slide {
+		position: relative;
+		height: r(744);
+
+		@include max-laptop {
+			height: r(560);
+		}
+		@include max-tablet {
+			height: r(460);
+		}
+	}
+
+	&__img {
+		position: absolute;
+		inset: 0;
+
+		img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: 50% 50%;
+		}
+	}
+
+	&__content {
+		position: absolute;
+		top: r(322);
+		left: r(196);
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		max-width: r(494);
+
+		@include max-laptop {
+			top: auto;
+			bottom: r(96);
+			left: r(48);
+			right: r(48);
+		}
+		@include max-tablet {
+			bottom: r(80);
+			left: r(24);
+			right: r(24);
+		}
+	}
+
+	&__title {
+		color: $whiteColor;
+		text-shadow: 0 r(1) r(6) rgba(0, 0, 0, 0.06);
+	}
+
+	&__subtitle {
+		margin-top: r(12);
+		font-size: r(20);
+		font-weight: 500;
+		line-height: 1.26;
+		text-transform: capitalize;
+		color: $whiteColor;
+		text-shadow: 0 r(1) r(6) rgba(0, 0, 0, 0.06);
+
+		@include max-tablet {
+			font-size: r(16);
+			line-height: 1.4;
+		}
+	}
+
+	&__btn {
+		margin-top: r(36);
+
+		@include max-tablet {
+			margin-top: r(24);
+		}
+	}
+
+	&__pagination {
+		position: absolute;
+		bottom: r(60);
+		left: 0;
+		z-index: 1;
+		display: flex;
+		justify-content: center;
+		gap: r(24);
+		width: 100%;
+
+		@include max-tablet {
+			bottom: r(32);
+			gap: r(16);
+		}
+	}
+
+	&__dot {
+		display: block;
+		@include size(r(24));
+		padding: 0;
+		background-color: $whiteColor;
+		border: none;
+		border-radius: 50%;
+		opacity: 0.6;
+		cursor: pointer;
+		transition: opacity .3s;
+
+		&_active {
+			opacity: 1;
+		}
+
+		@include max-tablet {
+			@include size(r(12));
+		}
+	}
+}

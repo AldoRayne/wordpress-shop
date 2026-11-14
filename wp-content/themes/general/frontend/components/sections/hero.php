@@ -1,0 +1,22 @@
+<section class="hero">
+	<div class="container">
+		<div class="hero__slider swiper js-hero-slider">
+			<div class="swiper-wrapper">
+				<?php // TODO: the design has one slide image for three pagination dots, slides 2-3 repeat slide 1 ?>
+				<?php for ($i = 0; $i < 3; $i++) : ?>
+					<div class="hero__slide swiper-slide">
+						<picture class="hero__img">
+							<img src="../assets/img/hero-1.jpg" alt="iPhone 15 series" width="1530" height="744" <?= $i ? 'loading="lazy"' : '' ?>>
+						</picture>
+						<div class="hero__content">
+							<<?= $i ? 'h2' : 'h1' ?> class="hero__title h1-title">Iphone 15 series</<?= $i ? 'h2' : 'h1' ?>>
+							<p class="hero__subtitle">Limited stocks available. Grab it now!</p>
+							<a class="hero__btn btn btn_light" href="shop.php">Shop collection</a>
+						</div>
+					</div>
+				<?php endfor; ?>
+			</div>
+			<div class="hero__pagination js-hero-pagination"></div>
+		</div>
+	</div>
+</section>

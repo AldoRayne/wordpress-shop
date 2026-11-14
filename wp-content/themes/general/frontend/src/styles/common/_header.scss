@@ -1,0 +1,257 @@
+.header {
+	position: relative;
+	z-index: 100;
+	background-color: $whiteColor;
+
+	&__top {
+		padding: r(6) 0;
+		background-color: $accentLightColor;
+	}
+
+	&__top-inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: r(24);
+
+		@include max-laptop {
+			justify-content: center;
+		}
+	}
+
+	&__top-text {
+		text-transform: capitalize;
+		color: $darkColor;
+
+		&:not(:nth-child(2)) {
+			@include max-laptop {
+				display: none;
+			}
+		}
+
+		@include max-tablet {
+			font-size: r(12);
+			text-align: center;
+		}
+	}
+
+	&__top-link {
+		text-decoration: underline;
+
+		@include hover {
+			color: $primaryColor;
+		}
+	}
+
+	&__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: r(40);
+		padding-top: r(30);
+		padding-bottom: r(30);
+
+		@include max-tablet {
+			padding-top: r(18);
+			padding-bottom: r(18);
+		}
+	}
+
+	&__logo {
+		flex-shrink: 0;
+		font-size: r(33);
+		font-weight: 700;
+		line-height: 1.26;
+		letter-spacing: 0.02em;
+		color: $darkColor;
+
+		span {
+			color: $primaryColor;
+		}
+
+		@include max-tablet {
+			font-size: r(26);
+		}
+	}
+
+	&__right {
+		display: flex;
+		align-items: center;
+		gap: r(80);
+
+		@include max-laptop {
+			gap: r(20);
+		}
+	}
+
+	&__menu {
+		display: flex;
+		align-items: center;
+		gap: r(40);
+		list-style: none;
+
+		> .menu-item > a {
+			display: inline-flex;
+			align-items: center;
+			color: $darkColor;
+
+			@include hover {
+				color: $primaryColor;
+			}
+		}
+
+		> .current-menu-item > a {
+			color: $primaryColor;
+		}
+
+		.icon {
+			@include size(r(13));
+		}
+
+		.menu-item-has-children {
+			position: relative;
+
+			@include hover {
+				.sub-menu {
+					visibility: visible;
+					opacity: 1;
+				}
+			}
+
+			&:focus-within .sub-menu {
+				visibility: visible;
+				opacity: 1;
+			}
+		}
+
+		.sub-menu {
+			position: absolute;
+			top: 100%;
+			left: r(-20);
+			min-width: r(180);
+			padding: r(12) 0;
+			list-style: none;
+			background-color: $whiteColor;
+			border-radius: r(10);
+			box-shadow: 0 0 r(44) rgba(0, 0, 0, 0.08);
+			visibility: hidden;
+			opacity: 0;
+			transition: opacity .3s, visibility .3s;
+
+			a {
+				display: block;
+				padding: r(8) r(20);
+				font-size: r(14);
+				line-height: 1.48;
+				letter-spacing: 0;
+				color: $darkColor;
+
+				@include hover {
+					color: $primaryColor;
+				}
+			}
+		}
+
+		@include max-laptop {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: r(24);
+
+			.sub-menu {
+				position: static;
+				min-width: 0;
+				padding: r(12) 0 0 r(12);
+				box-shadow: none;
+				visibility: visible;
+				opacity: 1;
+
+				a {
+					padding: r(6) 0;
+				}
+			}
+		}
+	}
+
+	&__nav {
+		@include max-laptop {
+			position: fixed;
+			top: 0;
+			right: 0;
+			width: unquote("min(#{r(320)}, 85vw)");
+			height: 100%;
+			padding: r(96) r(32) r(32);
+			overflow-y: auto;
+			background-color: $whiteColor;
+			box-shadow: 0 0 r(44) rgba(0, 0, 0, 0.08);
+			visibility: hidden;
+			transform: translateX(100%);
+			transition: transform .3s, visibility .3s;
+
+			&.open {
+				visibility: visible;
+				transform: translateX(0);
+			}
+		}
+	}
+
+	&__icons {
+		display: flex;
+		align-items: center;
+		gap: r(20);
+
+		@include max-tablet {
+			gap: r(14);
+		}
+	}
+
+	&__icon {
+		display: flex;
+		color: $darkColor;
+
+		.icon {
+			@include size(r(18));
+		}
+
+		@include hover {
+			color: $primaryColor;
+		}
+	}
+
+	&__burger {
+		position: relative;
+		z-index: 1;
+		display: none;
+		flex-direction: column;
+		justify-content: center;
+		gap: r(5);
+		@include size(r(24));
+		padding: 0;
+		background: none;
+		border: none;
+		cursor: pointer;
+
+		span {
+			display: block;
+			width: 100%;
+			height: 2px;
+			background-color: $darkColor;
+			transition: transform .3s, opacity .3s;
+		}
+
+		&.open {
+			span:nth-child(1) {
+				transform: translateY(#{r(7)}) rotate(45deg);
+			}
+			span:nth-child(2) {
+				opacity: 0;
+			}
+			span:nth-child(3) {
+				transform: translateY(#{r(-7)}) rotate(-45deg);
+			}
+		}
+
+		@include max-laptop {
+			display: flex;
+		}
+	}
+}
