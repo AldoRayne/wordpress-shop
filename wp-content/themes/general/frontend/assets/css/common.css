@@ -56,7 +56,7 @@ iframe {
   max-width: 100%; }
 
 input, select, textarea, button {
-  font-family: 'Roboto', 'Arial', sans-serif; }
+  font-family: inherit; }
 
 textarea:focus-visible {
   outline: 0; }
