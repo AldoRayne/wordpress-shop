@@ -11,9 +11,6 @@
             <li>
                 <a href="pages/home.php">home</a>
             </li>
-	        <li>
-		        <a href="pages/single.php">single</a>
-	        </li>
         </ul>
     </div>
 

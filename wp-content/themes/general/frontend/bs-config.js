@@ -1,6 +1,6 @@
 const urlapi = require('url');
-const siteUrl = '', // example `http://my-site.com/`
-	themeName = ''; // put WP theme name, example `project-name`
+const siteUrl = 'http://localhost/', // example `http://my-site.com/`
+	themeName = 'general'; // put WP theme name, example `project-name`
 const URL = urlapi.parse(siteUrl);
 
 module.exports = {

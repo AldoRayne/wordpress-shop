@@ -4,8 +4,5 @@
 @import "common/reset";
 @import "common/base";
 @import "common/fonts";
-@import "element/loader";
-
-.hero {
-  background-image: url('../img/services01.jpg');
-}
+@import "common/typography";
+@import "common/ui";

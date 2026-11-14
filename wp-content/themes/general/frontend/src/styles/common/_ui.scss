@@ -1,0 +1,40 @@
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: r(10);
+	padding: r(18) r(42);
+	font-family: inherit;
+	font-size: r(12);
+	font-weight: 700;
+	line-height: 1.48;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: $whiteColor;
+	background-color: $darkColor;
+	border: none;
+	border-radius: r(90);
+	cursor: pointer;
+	transition: background-color .3s, color .3s;
+
+	@include hover {
+		color: $whiteColor;
+		background-color: $hoverColor;
+	}
+
+	&_light {
+		color: $darkColor;
+		background-color: $whiteColor;
+	}
+
+	&_square {
+		min-height: r(53);
+		padding: 0 r(30);
+		background-color: $primaryColor;
+		border-radius: r(10);
+
+		@include hover {
+			background-color: $darkColor;
+		}
+	}
+}

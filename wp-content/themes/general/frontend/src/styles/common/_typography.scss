@@ -1,0 +1,48 @@
+.h1-title {
+	font-size: r(63);
+	font-weight: 800;
+	line-height: 1.26;
+	letter-spacing: 0;
+	text-transform: capitalize;
+	color: $darkColor;
+
+	@include max-tablet {
+		font-size: r(36);
+	}
+}
+
+.h2-title {
+	font-size: r(36);
+	font-weight: 700;
+	line-height: 1.26;
+	letter-spacing: 0;
+	text-transform: capitalize;
+	color: $darkColor;
+
+	@include max-tablet {
+		font-size: r(28);
+	}
+}
+
+.h3-title {
+	font-size: r(20);
+	font-weight: 700;
+	line-height: 1.26;
+	letter-spacing: 0;
+	text-transform: capitalize;
+	color: $darkColor;
+}
+
+.text-caps {
+	font-size: r(12);
+	font-weight: 700;
+	line-height: 1.48;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.text-sm {
+	font-size: r(14);
+	line-height: 1.48;
+	letter-spacing: 0;
+}
