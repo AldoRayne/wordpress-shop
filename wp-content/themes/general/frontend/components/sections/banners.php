@@ -5,13 +5,13 @@ $banners = [
 ];
 ?>
 <section class="banners">
-	<div class="container banners__inner">
+	<div class="container banners__inner" data-anim="curtain">
 		<?php foreach ($banners as $banner) : ?>
-			<div class="banners__item">
-				<picture class="banners__img">
+			<div class="banners__item" data-anim-item>
+				<picture class="banners__img" data-anim-media>
 					<img src="../assets/img/<?= $banner['img'] ?>" alt="" width="750" height="430" loading="lazy">
 				</picture>
-				<div class="banners__content">
+				<div class="banners__content" data-anim-text>
 					<h2 class="banners__title h1-title"><?= $banner['title'] ?></h2>
 					<p class="banners__text text-lead"><?= $banner['text'] ?></p>
 					<a class="banners__btn btn btn_light" href="shop.php"><?= $banner['btn'] ?></a>

@@ -7,10 +7,10 @@ $features = [
 ];
 ?>
 <section class="features">
-	<div class="container features__inner">
+	<div class="container features__inner" data-anim="cards">
 		<?php foreach ($features as $feature) : ?>
-			<div class="features__item">
-				<svg class="features__icon icon"><use href="../assets/icons/sprite.svg#<?= $feature['icon'] ?>"></use></svg>
+			<div class="features__item" data-anim-item>
+				<svg class="features__icon icon" data-anim-pop><use href="../assets/icons/sprite.svg#<?= $feature['icon'] ?>"></use></svg>
 				<h3 class="features__title h3-title"><?= $feature['title'] ?></h3>
 				<p class="features__text"><?= $feature['text'] ?></p>
 			</div>

@@ -1,5 +1,6 @@
 .footer {
 	padding-top: r(120);
+	overflow-x: clip;
 
 	@include max-tablet {
 		padding-top: r(64);

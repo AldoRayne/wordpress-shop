@@ -12,7 +12,7 @@
 a {
 	color: $primaryColor;
 	text-decoration: none;
-	transition: all .3s;
+	transition: color .3s, background-color .3s, border-color .3s;
 }
 
 input, textarea {

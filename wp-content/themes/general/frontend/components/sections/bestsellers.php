@@ -12,8 +12,8 @@ $products = [
 ?>
 <section class="bestsellers">
 	<div class="container">
-		<h2 class="bestsellers__title h2-title">Best selling items</h2>
-		<div class="bestsellers__grid">
+		<h2 class="bestsellers__title h2-title" data-anim="title">Best selling items</h2>
+		<div class="bestsellers__grid" data-anim="cards">
 			<?php foreach ($products as $product) : ?>
 				<?php include('../components/elements/_product-card.php') ?>
 			<?php endforeach; ?>

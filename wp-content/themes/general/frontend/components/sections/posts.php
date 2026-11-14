@@ -7,8 +7,8 @@ $posts = [
 ?>
 <section class="posts">
 	<div class="container">
-		<h2 class="posts__title h2-title">Latest Posts</h2>
-		<div class="posts__grid">
+		<h2 class="posts__title h2-title" data-anim="title">Latest Posts</h2>
+		<div class="posts__grid" data-anim="cards">
 			<?php foreach ($posts as $post) : ?>
 				<?php include('../components/elements/_post-card.php') ?>
 			<?php endforeach; ?>

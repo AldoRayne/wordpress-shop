@@ -28,7 +28,7 @@
 a {
   color: var(--color-primary);
   text-decoration: none;
-  transition: all .3s; }
+  transition: color .3s, background-color .3s, border-color .3s; }
 
 input, textarea {
   outline: none; }
@@ -119,6 +119,10 @@ body.modal-open {
 .alignfull {
   width: calc(100vw - var(--scrollbar-width, 0px));
   margin-left: calc(-50vw + (var(--scrollbar-width, 0px) / 2) + 50%); }
+
+.has-anim [data-anim-hero="title"],
+.has-anim [data-anim-hero="text"] {
+  visibility: hidden; }
 
 @font-face {
   font-family: "Plus Jakarta Sans";
@@ -505,7 +509,8 @@ body.modal-open {
         display: flex; } }
 
 .footer {
-  padding-top: 7.5rem; }
+  padding-top: 7.5rem;
+  overflow-x: clip; }
   @media only screen and (max-width: 767px) {
     .footer {
       padding-top: 4rem; } }

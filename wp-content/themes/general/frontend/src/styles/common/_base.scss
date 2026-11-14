@@ -71,3 +71,8 @@ body.modal-open {
   width: calc(100vw - var(--scrollbar-width, 0px));
   margin-left: calc(-50vw + (var(--scrollbar-width, 0px) / 2) + 50%);
 }
+
+.has-anim [data-anim-hero="title"],
+.has-anim [data-anim-hero="text"] {
+	visibility: hidden;
+}

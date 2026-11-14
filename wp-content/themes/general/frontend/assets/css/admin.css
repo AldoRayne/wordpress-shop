@@ -270,7 +270,8 @@
     border-radius: 1.25rem; }
   .wp-block-post-content .acf-block-preview .hero__slide {
     position: relative;
-    height: 46.5rem; }
+    height: 46.5rem;
+    overflow: hidden; }
     @media only screen and (max-width: 1199px) {
       .wp-block-post-content .acf-block-preview .hero__slide {
         height: 35rem; } }

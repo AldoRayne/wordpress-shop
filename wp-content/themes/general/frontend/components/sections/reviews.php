@@ -7,19 +7,19 @@ $reviews = [
 ?>
 <section class="reviews">
 	<div class="container">
-		<h2 class="reviews__title h2-title">Our customer’s review</h2>
-		<div class="reviews__slider swiper js-reviews-slider">
+		<h2 class="reviews__title h2-title" data-anim="title">Our customer’s review</h2>
+		<div class="reviews__slider swiper js-reviews-slider" data-anim="cards">
 			<div class="swiper-wrapper">
 				<?php // TODO: the design shows 3 reviews with three pagination dots, the list repeats to fill three pages ?>
 				<?php for ($page = 0; $page < 3; $page++) : ?>
 					<?php foreach ($reviews as $review) : ?>
 						<div class="reviews__slide swiper-slide">
-							<div class="reviews__card">
+							<div class="reviews__card" data-anim-item>
 								<p class="reviews__text"><?= $review['text'] ?></p>
 								<div class="reviews__author">
 									<div class="reviews__stars" aria-label="5 out of 5">
 										<?php for ($star = 0; $star < 5; $star++) : ?>
-											<svg class="icon"><use href="../assets/icons/sprite.svg#star"></use></svg>
+											<svg class="icon" data-anim-pop><use href="../assets/icons/sprite.svg#star"></use></svg>
 										<?php endfor; ?>
 									</div>
 									<p class="reviews__name"><?= $review['name'] ?></p>

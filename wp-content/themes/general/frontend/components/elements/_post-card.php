@@ -1,5 +1,5 @@
-<a class="post-card" href="<?= $post['href'] ?? 'blog-post.php' ?>">
-	<span class="post-card__img">
+<a class="post-card" href="<?= $post['href'] ?? 'blog-post.php' ?>" data-anim-item>
+	<span class="post-card__img" data-anim-media="clip-zoom">
 		<img src="../assets/img/<?= $post['img'] ?>" alt="<?= $post['title'] ?>" width="490" height="356" loading="lazy">
 	</span>
 	<span class="post-card__body">

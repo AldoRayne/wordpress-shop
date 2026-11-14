@@ -8,15 +8,15 @@ $categories = [
 ?>
 <section class="categories">
 	<div class="container">
-		<h2 class="categories__title h2-title">Our Categories</h2>
-		<div class="categories__slider swiper js-categories-slider">
+		<h2 class="categories__title h2-title" data-anim="title">Our Categories</h2>
+		<div class="categories__slider swiper js-categories-slider" data-anim="cards">
 			<div class="swiper-wrapper">
 				<?php // TODO: the design shows 4 categories with three pagination dots, the list repeats to fill three pages ?>
 				<?php for ($page = 0; $page < 3; $page++) : ?>
 					<?php foreach ($categories as $category) : ?>
 						<div class="categories__slide swiper-slide">
-							<a class="categories__item" href="shop.php">
-								<span class="categories__img">
+							<a class="categories__item" href="shop.php" data-anim-item>
+								<span class="categories__img" data-anim-media="clip">
 									<img src="../assets/img/<?= $category['img'] ?>" alt="<?= $category['name'] ?>" width="360" height="223" loading="lazy">
 								</span>
 								<span class="categories__name h3-title"><?= $category['name'] ?></span>

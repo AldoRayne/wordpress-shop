@@ -11,6 +11,7 @@
 	&__slide {
 		position: relative;
 		height: r(744);
+		overflow: hidden;
 
 		@include max-laptop {
 			height: r(560);
