@@ -1,0 +1,32 @@
+{
+	"name": "acf/bestsellers",
+	"title": "Best Selling Items",
+	"description": "",
+	"version": "1.0.0",
+	"apiVersion": 3,
+	"category": "section",
+	"icon": "cart",
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": true
+			}
+		}
+	},
+	"acf": {
+		"mode": "preview",
+		"postTypes": [
+			"page"
+		],
+		"renderTemplate": "index.php"
+	},
+	"supports": {
+		"anchor": true,
+		"align": false
+	},
+	"custom_styles": [
+		"/css/element-product_card.min.css",
+		"/css/section-bestsellers.min.css"
+	]
+}

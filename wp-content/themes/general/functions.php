@@ -72,6 +72,8 @@ require_once THEME_MODULES_DIR . '/search.php';
 require_once THEME_MODULES_DIR . '/widgets.php';
 require_once THEME_MODULES_DIR . '/shortcodes.php';
 require_once THEME_MODULES_DIR . '/PreviewACF.php';
+require_once THEME_MODULES_DIR . '/header-menu.php';
+require_once THEME_MODULES_DIR . '/animations.php';
 
 /**
  * Load ACF item

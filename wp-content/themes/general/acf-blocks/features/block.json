@@ -1,0 +1,31 @@
+{
+	"name": "acf/features",
+	"title": "Features",
+	"description": "",
+	"version": "1.0.0",
+	"apiVersion": 3,
+	"category": "section",
+	"icon": "awards",
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": true
+			}
+		}
+	},
+	"acf": {
+		"mode": "preview",
+		"postTypes": [
+			"page"
+		],
+		"renderTemplate": "index.php"
+	},
+	"supports": {
+		"anchor": true,
+		"align": false
+	},
+	"custom_styles": [
+		"/css/section-features.min.css"
+	]
+}

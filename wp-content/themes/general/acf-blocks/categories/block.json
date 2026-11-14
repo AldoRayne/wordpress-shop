@@ -1,0 +1,36 @@
+{
+	"name": "acf/categories",
+	"title": "Categories Slider",
+	"description": "",
+	"version": "1.0.0",
+	"apiVersion": 3,
+	"category": "section",
+	"icon": "category",
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": true
+			}
+		}
+	},
+	"acf": {
+		"mode": "preview",
+		"postTypes": [
+			"page"
+		],
+		"renderTemplate": "index.php"
+	},
+	"supports": {
+		"anchor": true,
+		"align": false
+	},
+	"custom_scripts": [
+		"/libs/swiper/swiper.min.js",
+		"/js/section-categories.min.js"
+	],
+	"custom_styles": [
+		"/libs/swiper/swiper.min.css",
+		"/css/section-categories.min.css"
+	]
+}

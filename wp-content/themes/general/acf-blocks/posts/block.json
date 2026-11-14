@@ -1,0 +1,32 @@
+{
+	"name": "acf/posts",
+	"title": "Latest Posts",
+	"description": "",
+	"version": "1.0.0",
+	"apiVersion": 3,
+	"category": "section",
+	"icon": "admin-post",
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": true
+			}
+		}
+	},
+	"acf": {
+		"mode": "preview",
+		"postTypes": [
+			"page"
+		],
+		"renderTemplate": "index.php"
+	},
+	"supports": {
+		"anchor": true,
+		"align": false
+	},
+	"custom_styles": [
+		"/css/element-post_card.min.css",
+		"/css/section-posts.min.css"
+	]
+}

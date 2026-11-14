@@ -16,11 +16,14 @@
 get_header();
 ?>
 
-<?php
-while ( have_posts() ) : the_post();
-	the_content();
-endwhile; // End of the loop.
-?>
+<main>
+	<?php
+	while ( have_posts() ) :
+		the_post();
+		the_content();
+	endwhile;
+	?>
+</main>
 
 <?php
 get_footer();

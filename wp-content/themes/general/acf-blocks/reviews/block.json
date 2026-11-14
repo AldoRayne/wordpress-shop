@@ -1,0 +1,36 @@
+{
+	"name": "acf/reviews",
+	"title": "Customer Reviews",
+	"description": "",
+	"version": "1.0.0",
+	"apiVersion": 3,
+	"category": "section",
+	"icon": "star-filled",
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": true
+			}
+		}
+	},
+	"acf": {
+		"mode": "preview",
+		"postTypes": [
+			"page"
+		],
+		"renderTemplate": "index.php"
+	},
+	"supports": {
+		"anchor": true,
+		"align": false
+	},
+	"custom_scripts": [
+		"/libs/swiper/swiper.min.js",
+		"/js/section-reviews.min.js"
+	],
+	"custom_styles": [
+		"/libs/swiper/swiper.min.css",
+		"/css/section-reviews.min.css"
+	]
+}

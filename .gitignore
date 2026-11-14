@@ -8,3 +8,4 @@ wp-content/debug.log
 node_modules/
 .figctx/
 .mcp.json
+wp-content/plugins/advanced-custom-fields-pro/
