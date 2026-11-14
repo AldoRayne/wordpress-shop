@@ -1,0 +1,106 @@
+@import "../common/mixins";
+@import "../common/variable";
+
+.subscribe {
+	padding-top: r(120);
+
+	@include max-tablet {
+		padding-top: r(64);
+	}
+
+	&__inner {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: r(120) r(110);
+		overflow: hidden;
+		text-align: center;
+		border-radius: r(20);
+
+		@include max-tablet {
+			padding: r(48) r(20);
+		}
+	}
+
+	&__bg {
+		position: absolute;
+		inset: 0;
+
+		img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	&__title,
+	&__text,
+	&__form {
+		position: relative;
+	}
+
+	&__title {
+		color: $whiteColor;
+	}
+
+	&__text {
+		margin-top: r(10);
+		color: $whiteColor;
+		text-shadow: 0 r(1) r(6) rgba(0, 0, 0, 0.06);
+	}
+
+	&__form {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		max-width: r(494);
+		height: r(53);
+		margin-top: r(36);
+		overflow: hidden;
+		background-color: $whiteColor;
+		border: 1px solid $borderColor;
+		border-radius: r(10);
+		box-shadow: 0 0 r(44) rgba(0, 0, 0, 0.08);
+
+		@include max-tablet {
+			margin-top: r(24);
+		}
+	}
+
+	&__input {
+		flex: 1;
+		min-width: 0;
+		height: 100%;
+		padding: 0 r(20);
+		font-family: inherit;
+		font-size: r(18);
+		letter-spacing: 0.02em;
+		color: $textColor;
+		background: none;
+		border: none;
+
+		@include placeholder {
+			font-style: italic;
+			font-weight: 300;
+			color: $textColor;
+		}
+
+		&:-webkit-autofill,
+		&:-webkit-autofill:hover,
+		&:-webkit-autofill:focus {
+			-webkit-text-fill-color: $textColor;
+		}
+
+		@include max-tablet {
+			font-size: r(16);
+		}
+	}
+
+	&__btn {
+		flex-shrink: 0;
+		height: 100%;
+		min-height: 0;
+	}
+}

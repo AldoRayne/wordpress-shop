@@ -10,13 +10,13 @@
 						</picture>
 						<div class="hero__content">
 							<<?= $i ? 'h2' : 'h1' ?> class="hero__title h1-title">Iphone 15 series</<?= $i ? 'h2' : 'h1' ?>>
-							<p class="hero__subtitle">Limited stocks available. Grab it now!</p>
+							<p class="hero__subtitle text-lead">Limited stocks available. Grab it now!</p>
 							<a class="hero__btn btn btn_light" href="shop.php">Shop collection</a>
 						</div>
 					</div>
 				<?php endfor; ?>
 			</div>
-			<div class="hero__pagination js-hero-pagination"></div>
+			<div class="hero__pagination slider-dots slider-dots_light js-hero-pagination"></div>
 		</div>
 	</div>
 </section>

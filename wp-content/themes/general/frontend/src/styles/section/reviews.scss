@@ -1,0 +1,92 @@
+@import "../common/mixins";
+@import "../common/variable";
+
+.reviews {
+	padding-top: r(120);
+
+	@include max-tablet {
+		padding-top: r(64);
+	}
+
+	&__title {
+		margin-bottom: r(36);
+		text-align: center;
+
+		@include max-tablet {
+			margin-bottom: r(24);
+		}
+	}
+
+	&__slider {
+		margin: r(-30);
+		padding: r(30);
+
+		@include max-laptop {
+			margin: r(-24);
+			padding: r(24);
+		}
+		@include max-tablet {
+			margin: r(-16);
+			padding: r(16);
+		}
+	}
+
+	&__slide {
+		height: auto;
+		transition: opacity .3s;
+
+		&:not(.swiper-slide-visible) {
+			opacity: 0;
+		}
+	}
+
+	&__card {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: r(30);
+		height: 100%;
+		padding: r(50);
+		background-color: $whiteColor;
+		border: 1px solid $borderLightColor;
+		border-radius: r(20);
+		box-shadow: 0 0 r(26) rgba(0, 0, 0, 0.06);
+
+		@include max-tablet {
+			gap: r(20);
+			padding: r(28) r(24);
+		}
+	}
+
+	&__author {
+		display: flex;
+		flex-direction: column;
+		gap: r(12);
+	}
+
+	&__stars {
+		display: flex;
+		gap: r(7);
+		color: $primaryColor;
+
+		.icon {
+			@include size(r(24));
+		}
+	}
+
+	&__name {
+		font-weight: 600;
+		line-height: 1.26;
+		letter-spacing: 0;
+		text-transform: capitalize;
+		color: $darkColor;
+	}
+
+	&__pagination {
+		margin-top: r(36);
+
+		@include max-tablet {
+			display: none;
+		}
+	}
+}

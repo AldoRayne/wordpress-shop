@@ -62,17 +62,8 @@
 
 	&__subtitle {
 		margin-top: r(12);
-		font-size: r(20);
-		font-weight: 500;
-		line-height: 1.26;
-		text-transform: capitalize;
 		color: $whiteColor;
 		text-shadow: 0 r(1) r(6) rgba(0, 0, 0, 0.06);
-
-		@include max-tablet {
-			font-size: r(16);
-			line-height: 1.4;
-		}
 	}
 
 	&__btn {
@@ -88,34 +79,10 @@
 		bottom: r(60);
 		left: 0;
 		z-index: 1;
-		display: flex;
-		justify-content: center;
-		gap: r(24);
 		width: 100%;
 
 		@include max-tablet {
 			bottom: r(32);
-			gap: r(16);
-		}
-	}
-
-	&__dot {
-		display: block;
-		@include size(r(24));
-		padding: 0;
-		background-color: $whiteColor;
-		border: none;
-		border-radius: 50%;
-		opacity: 0.6;
-		cursor: pointer;
-		transition: opacity .3s;
-
-		&_active {
-			opacity: 1;
-		}
-
-		@include max-tablet {
-			@include size(r(12));
 		}
 	}
 }

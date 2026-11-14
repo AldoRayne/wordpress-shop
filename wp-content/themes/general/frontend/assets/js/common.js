@@ -2,6 +2,21 @@
 /*!*******************************!*\
   !*** ./src/scripts/common.js ***!
   \*******************************/
+window.rPx = function (px) {
+  return px * parseFloat(getComputedStyle(document.documentElement).fontSize) / 16;
+};
+window.sliderDots = function (el) {
+  return {
+    el: el,
+    clickable: true,
+    bulletClass: 'slider-dots__item',
+    bulletActiveClass: 'slider-dots__item_active',
+    bulletElement: 'button',
+    modifierClass: 'slider-dots_',
+    horizontalClass: 'slider-dots_horizontal',
+    lockClass: 'slider-dots_lock'
+  };
+};
 window.addEventListener("DOMContentLoaded", function () {
   // scroll bar width
   function updateFullWidthBlocks() {

@@ -1,0 +1,40 @@
+@import "../common/mixins";
+@import "../common/variable";
+
+.bestsellers {
+	padding-top: r(120);
+
+	@include max-tablet {
+		padding-top: r(64);
+	}
+
+	&__title {
+		margin-bottom: r(36);
+		text-align: center;
+
+		@include max-tablet {
+			margin-bottom: r(24);
+		}
+	}
+
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: r(36) r(30);
+
+		@include max-tablet {
+			grid-template-columns: repeat(2, 1fr);
+			gap: r(24) r(16);
+		}
+	}
+
+	&__more {
+		display: flex;
+		justify-content: center;
+		margin-top: r(36);
+
+		@include max-tablet {
+			margin-top: r(24);
+		}
+	}
+}

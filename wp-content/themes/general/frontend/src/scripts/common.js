@@ -1,3 +1,16 @@
+window.rPx = (px) => px * parseFloat(getComputedStyle(document.documentElement).fontSize) / 16;
+
+window.sliderDots = (el) => ({
+    el,
+    clickable: true,
+    bulletClass: 'slider-dots__item',
+    bulletActiveClass: 'slider-dots__item_active',
+    bulletElement: 'button',
+    modifierClass: 'slider-dots_',
+    horizontalClass: 'slider-dots_horizontal',
+    lockClass: 'slider-dots_lock',
+});
+
 window.addEventListener("DOMContentLoaded", () => {
     // scroll bar width
         function updateFullWidthBlocks () {

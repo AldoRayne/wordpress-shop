@@ -1,7 +1,15 @@
 .wp-block-post-content .acf-block-preview {
 /* ELEMENT FILES */
-
+	@import 'element/post_card';
+	@import 'element/product_card';
 
 /* SECTION FILES */
+	@import 'section/banners';
+	@import 'section/bestsellers';
+	@import 'section/categories';
+	@import 'section/features';
 	@import 'section/hero';
+	@import 'section/posts';
+	@import 'section/reviews';
+	@import 'section/subscribe';
 }

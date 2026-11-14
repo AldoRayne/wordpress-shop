@@ -10,15 +10,7 @@ window.addEventListener("DOMContentLoaded", function () {
   new Swiper(slider, {
     loop: true,
     speed: 600,
-    pagination: {
-      el: slider.querySelector('.js-hero-pagination'),
-      clickable: true,
-      bulletClass: 'hero__dot',
-      bulletActiveClass: 'hero__dot_active',
-      bulletElement: 'button',
-      modifierClass: 'hero__pagination_',
-      horizontalClass: 'hero__pagination_horizontal'
-    }
+    pagination: sliderDots(slider.querySelector('.js-hero-pagination'))
   });
 });
 /******/ })()

@@ -46,3 +46,16 @@
 	line-height: 1.48;
 	letter-spacing: 0;
 }
+
+.text-lead {
+	font-size: r(20);
+	font-weight: 500;
+	line-height: 1.26;
+	letter-spacing: 0.02em;
+	text-transform: capitalize;
+
+	@include max-tablet {
+		font-size: r(16);
+		line-height: 1.4;
+	}
+}

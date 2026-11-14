@@ -1,0 +1,47 @@
+@import "../common/mixins";
+@import "../common/variable";
+
+.post-card {
+	display: flex;
+	flex-direction: column;
+	gap: r(16);
+
+	&__img {
+		display: block;
+		overflow: hidden;
+		aspect-ratio: 490 / 356;
+		border-radius: r(20);
+
+		img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform .3s;
+		}
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: r(12);
+		text-align: center;
+	}
+
+	&__meta {
+		line-height: 1.26;
+		letter-spacing: 0;
+		text-transform: capitalize;
+		color: $mutedColor;
+	}
+
+	@include hover {
+		.post-card__img img {
+			transform: scale(1.04);
+		}
+		.post-card__title {
+			color: $primaryColor;
+		}
+	}
+}

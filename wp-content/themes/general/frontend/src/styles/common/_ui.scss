@@ -38,3 +38,46 @@
 		}
 	}
 }
+
+.slider-dots {
+	display: flex;
+	justify-content: center;
+	gap: r(24);
+
+	&__item {
+		display: block;
+		@include size(r(24));
+		padding: 0;
+		background-color: $primaryColor;
+		border: none;
+		border-radius: 50%;
+		opacity: 0.3;
+		cursor: pointer;
+		transition: opacity .3s;
+
+		&_active {
+			opacity: 1;
+		}
+
+		@include max-tablet {
+			@include size(r(12));
+		}
+	}
+
+	&_lock {
+		display: none;
+	}
+
+	@include max-tablet {
+		gap: r(16);
+	}
+}
+
+.slider-dots_light .slider-dots__item {
+	background-color: $whiteColor;
+	opacity: 0.6;
+}
+
+.slider-dots_light .slider-dots__item_active {
+	opacity: 1;
+}
