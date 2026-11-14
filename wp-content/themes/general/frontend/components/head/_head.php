@@ -8,9 +8,7 @@
 		if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 			return;
 		}
-		var variant = (location.search.match(/[?&]anim=(a|b)(&|$)/) || [])[1] || 'b';
 		root.classList.add('has-anim');
-		root.setAttribute('data-anim-variant', variant);
 		setTimeout(function () {
 			if (!window.animReady) {
 				root.classList.remove('has-anim');

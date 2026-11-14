@@ -27,7 +27,6 @@ window.addEventListener("DOMContentLoaded", function () {
   var hasSplit = typeof SplitText !== 'undefined';
   (_gsap = gsap).registerPlugin.apply(_gsap, [ScrollTrigger].concat(_toConsumableArray(hasSplit ? [SplitText] : [])));
   window.animReady = true;
-  var variant = root.getAttribute('data-anim-variant') === 'a' ? 'a' : 'b';
   var ease = 'power3.out';
   var start = 'top 85%';
   var all = function all(scope, selector) {
@@ -67,7 +66,7 @@ window.addEventListener("DOMContentLoaded", function () {
     mobile: '(max-width: 767px)',
     desktop: '(min-width: 768px)'
   }, function (context) {
-    var rich = variant === 'b' && context.conditions.desktop;
+    var rich = context.conditions.desktop;
     all(document, '[data-anim="hero"]').forEach(function (hero) {
       var img = hero.querySelector('[data-anim-hero="img"]');
       var title = hero.querySelector('[data-anim-hero="title"]');

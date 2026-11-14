@@ -14,7 +14,6 @@ window.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(ScrollTrigger, ...(hasSplit ? [SplitText] : []));
     window.animReady = true;
 
-    const variant = root.getAttribute('data-anim-variant') === 'a' ? 'a' : 'b';
     const ease = 'power3.out';
     const start = 'top 85%';
     const all = (scope, selector) => [...scope.querySelectorAll(selector)];
@@ -42,7 +41,7 @@ window.addEventListener("DOMContentLoaded", () => {
         mobile: '(max-width: 767px)',
         desktop: '(min-width: 768px)',
     }, (context) => {
-        const rich = variant === 'b' && context.conditions.desktop;
+        const rich = context.conditions.desktop;
 
         all(document, '[data-anim="hero"]').forEach((hero) => {
             const img = hero.querySelector('[data-anim-hero="img"]');
