@@ -52,6 +52,18 @@ window.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+  document.querySelectorAll('.js-submenu-toggle').forEach(function (toggle) {
+    toggle.addEventListener('click', function (event) {
+      event.preventDefault();
+      if (window.innerWidth >= 1200) {
+        return;
+      }
+      var item = toggle.parentElement;
+      var open = !item.classList.contains('open');
+      item.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open);
+    });
+  });
 });
 
 //If you really need Jquery

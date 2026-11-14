@@ -53,6 +53,21 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    document.querySelectorAll('.js-submenu-toggle').forEach((toggle) => {
+        toggle.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            if (window.innerWidth >= 1200) {
+                return;
+            }
+
+            const item = toggle.parentElement;
+            const open = !item.classList.contains('open');
+            item.classList.toggle('open', open);
+            toggle.setAttribute('aria-expanded', open);
+        });
+    });
+
 });
 
 

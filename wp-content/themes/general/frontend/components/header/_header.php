@@ -17,7 +17,7 @@
 					<li class="menu-item"><a class="text-caps" href="shop.php">Shop</a></li>
 					<li class="menu-item"><a class="text-caps" href="blog.php">Blogs</a></li>
 					<li class="menu-item menu-item-has-children">
-						<a class="text-caps" href="#">Pages<svg class="icon"><use href="../assets/icons/sprite.svg#chevron-down"></use></svg></a>
+						<a class="text-caps js-submenu-toggle" href="#" aria-expanded="false">Pages<svg class="icon"><use href="../assets/icons/sprite.svg#chevron-down"></use></svg></a>
 						<ul class="sub-menu">
 							<li class="menu-item"><a href="product.php">Product</a></li>
 							<li class="menu-item"><a href="cart.php">Cart</a></li>
