@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Map</title>
+    <style>
+        .map {
+            position: relative;
+            display: block;
+            width: 100%;
+            padding: 1.6875rem 0 12.5rem;
+        }
+        @media only screen and (max-width: 767px) {
+            .map {
+                padding: 1.25rem 0 9.375rem; }
+        }
+        @media only screen and (min-width: 768px) {
+            .map .container {
+                padding: 0 1.3125rem; }
+        }
+        .map__navigation {
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            width: 100%;
+            margin-bottom: 3.625rem;
+            z-index: 1;
+        }
+        @media only screen and (max-width: 767px) {
+            .map__navigation {
+                margin-bottom: 5rem; }
+        }
+        .map__select {
+            max-width: 22.9375rem;
+            margin-right: 1.25rem;
+            border: 1px solid #000;
+        }
+        .map__select:last-child {
+            margin-right: 0; }
+        @media only screen and (max-width: 767px) {
+            .map__select {
+                max-width: none;
+                margin-right: 0;
+                margin-bottom: 1rem; }
+            .map__select:last-child {
+                margin-bottom: 0; }
+        }
+        .map__search {
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            width: 22.875rem;
+            height: 3.5rem;
+            background-color: #000;
+            border: 1px solid #000;
+        }
+        .map__search::before {
+            position: absolute;
+            content: '';
+            top: 1rem;
+            right: 0.625rem;
+            width: 2.1875rem;
+            height: 2.1875rem;
+            background-image: url(img/map_search.svg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            z-index: 1; }
+        @media only screen and (max-width: 767px) {
+            .map__search::before {
+                left: 0.875rem;
+                right: auto;
+                top: 0.9375rem; }
+        }
+        @media only screen and (max-width: 767px) {
+            .map__search {
+                width: 100%; }
+        }
+        .map__input {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            font-size: 1.25rem;
+            font-weight: 400;
+            line-height: 1.4;
+            letter-spacing: -0.01em;
+            color: #000;
+            border: none;
+            background-color: #fff;
+            padding: 0 3.75rem 0 1.25rem;
+        }
+        @media only screen and (max-width: 767px) {
+            .map__input {
+                letter-spacing: -0.01em;
+                padding: 0 1.25rem 0 3.75rem; }
+        }
+        .map__input:-webkit-autofill, .map__input:-webkit-autofill:hover, .map__input:-webkit-autofill:focus, .map__input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 1.875rem #000 inset !important;
+            -webkit-text-fill-color: #000 !important; }
+        .map__error {
+            position: absolute;
+            left: 0;
+            top: calc(100% + 0.25rem);
+            display: block;
+            width: 100%;
+            font-size: 1rem;
+            font-style: italic;
+            line-height: 1.75rem;
+            letter-spacing: -0.015rem;
+            color: #000;
+            opacity: 0;
+            visibility: hidden;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s; }
+        .map__error--active {
+            opacity: 1;
+            visibility: visible; }
+        .map__wrapper {
+            position: relative;
+            margin-left: auto;
+            margin-bottom: 9.75rem; }
+        .map__wrapper:last-child {
+            margin-bottom: 0; }
+        @media only screen and (min-width: 768px) {
+            .map__wrapper {
+                width: calc(100% - 9.5rem); } }
+        @media only screen and (max-width: 767px) {
+            .map__wrapper {
+                padding: 0;
+                margin: 0 0 9.5rem 0; } }
+        .map__img {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56%;
+            background-color: #000;
+            overflow: hidden; }
+        @media only screen and (min-width: 1200px) {
+            .map__img {
+                height: 45rem;
+                padding-bottom: 0; } }
+        @media only screen and (max-width: 767px) {
+            .map__img {
+                height: calc(var(--vh, 1vh)*100);
+                /*height: 0;
+              padding-bottom: 80%;*/ } }
+        .map__info {
+            position: relative;
+            min-width: 15.875rem;
+            padding: 2.8125rem 5.25rem 2rem;
+            font-size: 1.25rem;
+            line-height: 1.15;
+            letter-spacing: -0.01em; }
+        @media only screen and (max-width: 767px) {
+            .map__info {
+                padding-left: 3.875rem;
+                padding-right: 3.875rem;
+                font-size: 1.125rem; } }
+        .map__info div {
+            margin-bottom: 1.375rem; }
+        .map__info div:first-child a {
+            font-weight: 700; }
+        .map__info div:last-child {
+            margin-bottom: 0;
+            margin-left: 2.375rem; }
+        .map__info div:last-child a {
+            word-break: break-all; }
+        .map__info p {
+            margin-bottom: 0.3125rem; }
+        .map__info p:last-child {
+            margin-bottom: 0; }
+        .map__info a {
+            font-weight: 300;
+            color: #000;
+            text-transform: none;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s; }
+        .map__info a:hover {
+            color: #000; }
+        .map__info a::before {
+            height: 0.0625rem; }
+        .map__cluster {
+            font-family: 'UniNeue' !important;
+            width: 44px;
+            height: 44px;
+            font-size: 24px !important;
+            line-height: 42px;
+            color: #fff !important;
+            letter-spacing: -0.01em; }
+        .map .location-btn {
+            position: absolute;
+            top: 13.5625rem !important;
+            right: 4.4375rem !important;
+            width: 3.5rem;
+            height: 3.5rem;
+            border: none;
+            padding: 0.6875rem;
+            border-radius: 50%;
+            cursor: pointer;
+            color: #fff;
+            overflow: hidden;
+            background-color: green;
+            -webkit-transition: .6s background-color;
+            transition: .6s background-color; }
+        @media only screen and (max-width: 767px) {
+            .map .location-btn {
+                width: 2.5625rem !important;
+                height: 2.5625rem !important;
+                top: 8.75rem !important;
+                right: 1.875rem !important;
+                padding: 0.5rem; } }
+        @media only screen and (min-width: 768px) {
+            .map .location-btn:hover {
+                background-color: #000 !important; } }
+        .map .location-btn svg {
+            position: relative;
+            top: 0.125rem;
+            left: -0.125rem;
+            width: 100%;
+            height: 100%; }
+        .map .location-btn svg path {
+            stroke: #fff;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s; }
+
+        .gm-style .gm-style-iw-c {
+            padding: 0;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            width: 25.4375rem;
+            max-width: initial !important;
+            border-radius: 0;
+            clip-path: polygon(0% 0%, 82% 0, 100% 100%, 18% 100%);
+            min-height: 15.5625rem;
+            background: #000;
+            color: #fff;
+            font-size: 1.25rem;
+            line-height: 1.4;
+            letter-spacing: -0.01em;
+            text-align: left;
+            font-weight: 400 !important;
+            -webkit-transform: translate3d(-50%, -50%, 0) !important;
+            transform: translate3d(-50%, -50%, 0) !important; }
+        @media only screen and (max-width: 767px) {
+            .gm-style .gm-style-iw-c {
+                width: 23rem;
+                font-size: 1.125rem; } }
+        .gm-style .gm-style-iw-c a {
+            color: #fff; }
+
+        .gm-style-iw-chr {
+            position: absolute;
+            top: 0.875rem;
+            right: 5.25rem !important;
+            z-index: 5; }
+        @media only screen and (max-width: 767px) {
+            .gm-style-iw-chr {
+                top: 0.25rem;
+                right: 4rem !important; } }
+        .gm-style-iw-chr button span {
+            display: none !important; }
+        .gm-style-iw-chr button:before {
+            width: 2.5625rem;
+            height: 2.5625rem;
+            background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2241%22%20height%3D%2241%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20stroke%3D%22%23fff%22%20stroke-width%3D%222%22%20d%3D%22M30.033%2030.033%2010.011%2010.011m.001%2020.022%2020.022-20.022%22%2F%3E%3C%2Fsvg%3E");
+            background-size: 2.5625rem;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            content: ''; }
+
+        .gm-style .gm-style-iw-d {
+            overflow: initial !important; }
+
+        .gm-style .gm-style-iw-tc {
+            display: none !important; }
+
+        body .pac-container {
+            border: 0;
+            background-color: #fff;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            border-radius: 0;
+            margin-top: 1rem; }
+        body .pac-container:after {
+            display: none !important; }
+
+        body .pac-item {
+            border: 0;
+            position: relative;
+            width: 100%;
+            height: 2.8rem;
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 2.8rem;
+            color: #000;
+            letter-spacing: -0.015rem;
+            padding: 0 1.1rem;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s; }
+
+        body .pac-item:hover {
+            background-color: green; }
+
+        body .pac-icon.pac-icon-marker {
+            display: none; }
+
+        body .pac-item-query {
+            font-size: 1.25rem; }
+
+        .select {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 3.5rem;
+            cursor: pointer;
+            background-color: #fff; }
+        .select.active .select__list {
+            z-index: 2;
+            top: 100%;
+            -webkit-transform: scaleY(1);
+            -ms-transform: scaleY(1);
+            transform: scaleY(1);
+        }
+        .select__selected {
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            width: 100%;
+            font-size: 1.25rem;
+            font-weight: 400;
+            line-height: 3.5rem;
+            padding: 0 4.125rem 0 1.375rem;
+            color: #000;
+            letter-spacing: -0.01875rem; }
+        .select__selected::before {
+            position: absolute;
+            content: '';
+            right: 1.6875rem;
+            width: 0.875rem;
+            height: 0.875rem;
+            border-bottom: 0.125rem solid #000;
+            border-right: 0.125rem solid #000;
+            margin: -0.5rem 0 0 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg); }
+        @media only screen and (max-width: 767px) {
+            .select__selected::before {
+                right: 1.4375rem;
+                margin: -0.4375rem 0 0 0; } }
+        .select__placeholder {
+            font-weight: 300; }
+        .select__list {
+            position: absolute;
+            z-index: 1;
+            top: 100%;
+            width: 100%;
+            max-height: 21rem;
+            border: 0;
+            margin-top: 1rem;
+            background-color: #fff;
+            -webkit-transform-origin: top center;
+            -ms-transform-origin: top center;
+            transform-origin: top center;
+            overflow: auto;
+            scrollbar-width: none;
+            -webkit-transform: scaleY(0);
+            -ms-transform: scaleY(0);
+            transform: scaleY(0);
+            -webkit-transition: 0.3s;
+            transition: 0.3s;
+            list-style: none;
+            padding-left: 0;
+        }
+        .select__list::-webkit-scrollbar {
+            display: none; }
+        .select__item {
+            position: relative;
+            width: 100%;
+            height: 3.5rem;
+            font-size: 1.25rem;
+            font-weight: 300;
+            line-height: 3.5rem;
+            color: #000;
+            letter-spacing: -0.01875rem;
+            padding: 0 1.375rem;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s; }
+        .select__item:hover {
+            background-color: green; }
+
+        .gm-bundled-control {
+            margin: 0 !important;
+            right: 0 !important; }
+        .gm-bundled-control .gmnoprint {
+            left: auto !important;
+            top: 4.3125rem !important;
+            right: 4.5rem; }
+        @media only screen and (max-width: 767px) {
+            .gm-bundled-control .gmnoprint {
+                top: 2rem !important;
+                right: 1.875rem; } }
+        .gm-bundled-control .gmnoprint > div {
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+            background-color: transparent !important;
+            width: 3.5rem !important;
+            height: 8.25rem !important; }
+        @media only screen and (max-width: 767px) {
+            .gm-bundled-control .gmnoprint > div {
+                width: 2.5625rem !important;
+                height: 6.25rem !important; } }
+        .gm-bundled-control .gmnoprint button {
+            width: 3.5rem !important;
+            height: 3.5rem !important;
+            border-radius: 50% !important;
+            background-color: green !important;
+            border: 0 !important;
+            margin-bottom: 1rem !important;
+            color: #fff !important;
+            -webkit-transition: .6s background-color;
+            transition: .6s background-color; }
+        @media only screen and (max-width: 767px) {
+            .gm-bundled-control .gmnoprint button {
+                width: 2.5625rem !important;
+                height: 2.5625rem !important;
+                margin-bottom: 0.75rem !important; } }
+        @media only screen and (min-width: 768px) {
+            .gm-bundled-control .gmnoprint button:hover {
+                background-color: #000 !important; } }
+        .gm-bundled-control .gmnoprint button:before {
+            width: 1.8125rem;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            content: ''; }
+        @media only screen and (max-width: 767px) {
+            .gm-bundled-control .gmnoprint button:before {
+                width: 1.3125rem; } }
+        .gm-bundled-control .gmnoprint button img {
+            display: none !important; }
+        .gm-bundled-control .gmnoprint button:first-child:before {
+            height: 1.8125rem;
+            background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2229%22%20height%3D%2229%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20stroke%3D%22%23fff%22%20stroke-width%3D%222%22%20d%3D%22M29%2014.158H.685m14.157%2014.157V0%22%2F%3E%3C%2Fsvg%3E");
+            background-size: 100%; }
+        @media only screen and (max-width: 767px) {
+            .gm-bundled-control .gmnoprint button:first-child:before {
+                height: 1.3125rem; } }
+        .gm-bundled-control .gmnoprint button:last-of-type:before {
+            height: 0.1875rem;
+            background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2229%22%20height%3D%223%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20stroke%3D%22%23fff%22%20stroke-width%3D%222%22%20d%3D%22M29%201.158H.685%22%2F%3E%3C%2Fsvg%3E");
+            background-size: 100%; }
+        @media only screen and (max-width: 767px) {
+            .gm-bundled-control .gmnoprint button:last-of-type:before {
+                height: 0.0625rem; } }
+
+        .gm-fullscreen-control {
+            width: 3.5rem !important;
+            height: 3.5rem !important;
+            border-radius: 50% !important;
+            background-color: green !important;
+            border: 0 !important;
+            color: #fff !important;
+            right: 4.4375rem !important;
+            top: auto !important;
+            bottom: 4.5rem !important;
+            -webkit-transition: .6s background-color;
+            transition: .6s background-color;
+            margin: 0 !important; }
+        @media only screen and (max-width: 767px) {
+            .gm-fullscreen-control {
+                width: 2.5625rem !important;
+                height: 2.5625rem !important;
+                bottom: 2rem !important;
+                right: 1.875rem !important; } }
+        @media only screen and (min-width: 768px) {
+            .gm-fullscreen-control:hover {
+                background-color: #000 !important; } }
+        .gm-fullscreen-control:before {
+            width: 1.5rem;
+            height: 1.5rem;
+            background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M9%201H1v8m14%2014h8v-8m0-6V1h-8M1%2015v8h8%22%20stroke%3D%22%23fff%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E");
+            background-size: 100%;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            content: ''; }
+        @media only screen and (max-width: 767px) {
+            .gm-fullscreen-control:before {
+                width: 1.1875rem;
+                height: 1.1875rem; } }
+        .gm-fullscreen-control img {
+            display: none !important; }
+
+        .gm-style {
+            font-family: 'UniNeue' !important; }
+    </style>
+</head>
+<body>
+
+<main class="main">
+
+    <section class="map" data-current-language="de" data-file-url="json/data.json" data-countries="json/countries.json" data-cluster_icon="img/cluster_icon.svg" data-marker_icon="img/marker_icon.svg">
+
+        <!-- navigation -->
+        <div class="container">
+            <!-- list of country codes - https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes -->
+            <div class="map__navigation" data-aos="fade-up">
+                <div class="select map__select">
+                    <div class="select__selected select__placeholder">Land auswählen</div>
+                    <ul class="select__list">
+                        <li
+                                class="select__item"
+                                data-value=""
+                                data-lat=""
+                                data-lng=""
+                                data-zoom="15">
+                            All
+                        </li>
+                    </ul>
+                </div>
+                <label class="map__search">
+                    <input class="map__input" type="text" name="search" placeholder="Ort oder PLZ eingeben" required>
+                    <span class="map__error not-exist">Leider wurden an diesem Ort keine Händler gefunden.</span>
+                    <span class="map__error not-markers">In diesem Bereich gibt es keine Markierungen</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- wrapper -->
+        <div class="map__wrapper" data-aos="fade-up">
+            <!-- map -->
+            <div class="map__img" id="map" data-lat="47.373878" data-lng="8.545094"></div>
+        </div>
+
+    </section>
+
+</main>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyk8o2X0GMKot4QAWHW3zKwR_KwrhHlKU&libraries=places" defer></script>
+<script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js" defer></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        // CUSTOM SELECT
+
+        const customSelectInit = () => {
+            const customSelects = document.querySelectorAll('.select');
+            if (customSelects.length) {
+                customSelects.forEach((select) => {
+                    const selected = select.querySelector('.select__selected');
+                    const items = select.querySelectorAll('.select__item');
+
+                    // close select
+                    const closeSelect = () => select.classList.remove('active');
+
+                    // close all selects
+                    const closeAllSelects = () =>
+                            customSelects.forEach((select) => select.classList.remove('active'));
+
+                    // toggle select
+                    const toggleSelect = () => {
+                        if (select.classList.contains('active')) {
+                            closeSelect();
+                            return;
+                        }
+
+                        closeAllSelects();
+                        select.classList.add('active');
+                    };
+
+                    // change select
+                    const changeSelect = (target) => {
+                        const targetText = target.textContent;
+
+                        selected.classList.remove('select__placeholder');
+                        selected.textContent = targetText;
+                    };
+
+                    // events
+                    select.addEventListener('click', toggleSelect);
+
+                    items.forEach((item) => item.addEventListener('click', ({target}) => changeSelect(target)));
+
+                    window.addEventListener('click', ({target}) => {
+                        if (target.closest('.select') === null) {
+                            closeAllSelects();
+                        }
+                    });
+                });
+            }
+        };
+
+        var autocomplete;
+        var mapInit = function mapInit() {
+            var mapSection = document.querySelector('.map');
+            if (mapSection) {
+                // Отримуємо елементи карти, форми та параметри
+                const mapBlock = mapSection.querySelector('#map');
+                const mapMarkerWrapper = mapSection.querySelector('.map__wrapper');
+                const form = mapSection.querySelector('.map__navigation');
+                const input = form.querySelector('.map__input');
+                const selectWrap = mapSection.querySelector('.map__select .select__list');
+
+                const currentLang = mapSection.dataset.currentLanguage.toLowerCase();
+                const errorNotExist = form.querySelector('.not-exist');
+                const errorNotMarkers = form.querySelector('.not-markers');
+                const fileUrl = mapSection.dataset.fileUrl;
+                const cluster_icon = mapSection.dataset.cluster_icon;
+                const marker_icon = mapSection.dataset.marker_icon;
+                const countriesUrl = mapSection.dataset.countries;
+
+                const mapLat = +mapBlock.dataset.lat;
+                const mapLng = +mapBlock.dataset.lng;
+
+                // Встановлюємо стандартні координати та масштаб
+                let defaultCoords = {
+                    lat: mapLat,
+                    lng: mapLng,
+                };
+                let zoom = 3;
+
+                // Масиви маркерів, списків країн та інші змінні
+                let markersArr = [];
+                let infoWindow = null;
+                let map = null;
+                let countryList = [];
+                let countryCodesArray = [];
+                let selectItems, place;
+                let errors = form.querySelectorAll('.map__error');
+
+                // Завантажуємо дані
+                parseCsv();
+
+                // Додаємо слухач введення для очищення помилок
+                input.addEventListener('input', function (event) {
+                    resetErrors();
+                });
+
+
+                // Скидання помилок
+                var resetErrors = function resetErrors() {
+                    errors.forEach(function (error) {
+                        return error.classList.remove('map__error--active');
+                    });
+                };
+
+                // Перевіряємо, чи знаходяться маркери у межах карти
+                var isMarkersInBoundary = function isMarkersInBoundary(error) {
+                    var status = true;
+                    var bounds = map.getBounds();
+                    var boundaryRectangle = new google.maps.Rectangle({
+                        bounds: {
+                            north:
+                                    bounds.getNorthEast().lat() -
+                                    (bounds.getNorthEast().lat() - bounds.getSouthWest().lat()) * 0.1,
+                            south:
+                                    bounds.getSouthWest().lat() +
+                                    (bounds.getNorthEast().lat() - bounds.getSouthWest().lat()) * 0.1,
+                            east:
+                                    bounds.getNorthEast().lng() -
+                                    (bounds.getNorthEast().lng() - bounds.getSouthWest().lng()) * 0.1,
+                            west:
+                                    bounds.getSouthWest().lng() +
+                                    (bounds.getNorthEast().lng() - bounds.getSouthWest().lng()) * 0.1,
+                        },
+                        editable: false,
+                        draggable: false,
+                        clickable: false,
+                        fillOpacity: 0,
+                        strokeOpacity: 0,
+                    });
+                    resetErrors();
+                    boundaryRectangle.setMap(map);
+                    for (let i = 0; i < markersArr.length; i++) {
+                        const marker = markersArr[i];
+                        status = boundaryRectangle.getBounds().contains(marker.getPosition());
+
+                        if (status) break;
+                    }
+                    status ? error.classList.remove('map__error--active') : error.classList.add('map__error--active');
+                };
+
+                // Додаємо вікно інформації для маркера
+                var addInfoWindow = function addInfoWindow(item, marker) {
+                    var infoTitle = item.dataset.infoTitle;
+                    var infoTitleHref = item.dataset.infoTitleHref;
+                    var infoText = item.dataset.infoText;
+                    var infoCity = item.dataset.infoCity;
+                    var infoEmail = item.dataset.infoEmail;
+                    var infoPhone = item.dataset.infoPhone;
+
+                    // Перевіряємо, чи існує посилання на назву
+                    const isInfoTitleHrefExist = infoTitleHref
+                            ? `<p><a href="${infoTitleHref}" target="_blank" style="font-weight: 600;">${infoTitle}</a></p>`
+                            : `<p class="bold">${infoTitle}</p>`;
+
+                    // Формуємо контент інформаційного вікна
+                    var content =
+                            '<div class="text text--size-2 map__info">' +
+                            '<div>' +
+                            ''.concat(infoTitle ? isInfoTitleHrefExist : '') +
+                            ''.concat(infoText ? '<p>'.concat(infoText, '</p>') : '') +
+                            ''.concat(infoCity ? '<p>'.concat(infoCity, '</p>') : '') +
+                            '</div>' +
+                            '<div>' +
+                            ''.concat(
+                                    infoEmail ? '<p><a href="mailto:'.concat(infoEmail, '">').concat(infoEmail, '</a></p>') : ''
+                            ) +
+                            ''.concat(
+                                    infoPhone
+                                            ? '<p><a href="tel:'
+                                                    .concat(infoPhone.replaceAll(' ', ''), '">')
+                                                    .concat(infoPhone, '</a></p>')
+                                            : ''
+                            ) +
+                            '</div>' +
+                            '</div>';
+
+                    // Закриваємо вікно при кліку на карту
+                    google.maps.event.addListener(map, 'click', function () {
+                        return infoWindow.close();
+                    });
+
+                    // Відкриваємо вікно при кліку на маркер
+                    marker.addListener('click', function () {
+                        map.panTo(marker.getPosition());
+                        infoWindow.setContent(content);
+                        infoWindow.open(map, marker);
+                    });
+                };
+
+                // Додаємо кластеризацію маркерів
+                var addMarkerCluster = function addMarkerCluster() {
+                    var markerClusterOptions = {
+                        render: function render(_ref) {
+                            var count = _ref.count,
+                                    position = _ref.position;
+                            return new google.maps.Marker({
+                                label: {
+                                    text: count > 9 ? ''.concat(count) : '0'.concat(count),
+                                    className: 'map__cluster',
+                                },
+                                icon: cluster_icon,
+                                zIndex: Number(google.maps.Marker.MAX_ZINDEX) + count,
+                                position: position,
+                            });
+                        },
+                    };
+                    new markerClusterer.MarkerClusterer({
+                        map: map,
+                        markers: markersArr,
+                        renderer: markerClusterOptions,
+                    });
+                };
+
+                // Функція додає маркери на карту
+                var addMarkers = function addMarkers() {
+                    var markers = mapSection.querySelectorAll('.map__marker');
+
+                    // Ініціалізуємо інформаційне вікно
+                    infoWindow = new google.maps.InfoWindow();
+
+                    // Додаємо маркери
+                    markers.forEach(function (item) {
+                        var markerLat = +item.dataset.lat;
+                        var markerLng = +item.dataset.lng;
+                        var markerIcon = item.dataset.icon;
+                        var marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(markerLat, markerLng),
+                            icon: markerIcon,
+                            map: map,
+                        });
+                        markersArr.push(marker);
+                        addInfoWindow(item, marker);
+                    });
+                };
+
+                // Додаємо кнопку геолокації
+                var addLocationBtn = function addLocationBtn() {
+
+                    // Ініціалізація кнопки геолокації
+                    var locationBtn = document.createElement('button');
+                    var locationIcon =
+                            '<svg width="33" height="34" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+                            '<path d="M31.1317 2.13173L3.90812 13.0919L18.1145 15.1489L20.1716 29.3553L31.1317 2.13173Z" stroke-width="2"/>' +
+                            '</svg>';
+                    locationBtn.classList.add('location-btn');
+                    locationBtn.innerHTML += locationIcon;
+                    map.controls[google.maps.ControlPosition.RIGHT_TOP].push(locationBtn);
+
+                    // Ініціалізація маркера геолокації
+                    var locationMarker = new google.maps.Marker({
+                        animation: google.maps.Animation.DROP,
+                        map: map,
+                    });
+
+                    // Отримання поточного місця
+                    locationBtn.addEventListener('click', function () {
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(function (position) {
+                                var locationCoords = new google.maps.LatLng(
+                                        position.coords.latitude,
+                                        position.coords.longitude
+                                );
+                                locationMarker.setPosition(locationCoords);
+                                map.panTo(locationMarker.getPosition());
+                                map.setZoom(zoom);
+                            });
+                            input.value = '';
+                            resetErrors();
+                        }
+                    });
+                };
+
+                // Зосередження на країні
+                function focusOnCountry(countryName, map, type) {
+                    const geocoder = new google.maps.Geocoder();
+
+                    geocoder.geocode({address: countryName}, function (results, status) {
+                        if (status == 'OK') {
+                            let bounds;
+                            if (type === 'country') {
+                                bounds = results[0].geometry.viewport;
+                            } else {
+                                const cityCenter = results[0].geometry.location;
+
+                                // Визначаємо дві точки для меж
+                                const northPoint = google.maps.geometry.spherical.computeOffset(cityCenter, 50000, 0); // 50km to the North
+                                const southPoint = google.maps.geometry.spherical.computeOffset(cityCenter, 50000, 180); // 50km to the South
+
+                                // Create bounds object
+                                bounds = new google.maps.LatLngBounds();
+                                bounds.extend(northPoint);
+                                bounds.extend(southPoint);
+                            }
+
+                            // Adjust the map's viewport
+                            map.fitBounds(bounds);
+                            const currentZoom = map.getZoom();
+                            map.setZoom(currentZoom);
+                        } else {
+                            console.error('Geocode was not successful for the following reason: ' + status);
+                        }
+                    });
+                }
+
+                // init autocomplete
+                var addAutocomplete = function addAutocomplete() {
+                    var autocompleteOptions = {
+                        strictBounds: false,
+                        types: ['locality', 'postal_code'],
+                    };
+                    autocomplete = new google.maps.places.Autocomplete(input, autocompleteOptions);
+
+                    autocomplete.setComponentRestrictions({
+                        country: countryList,
+                    });
+
+                    autocomplete.addListener('place_changed', function () {
+                        place = autocomplete.getPlace();
+                        onPlaceChanged();
+                    });
+
+                    // on place changed
+                    var onPlaceChanged = function onPlaceChanged() {
+                        // check if place exist
+                        //focusOnCountry(place.name, map);
+
+                        if (!place.geometry || !place.geometry.location) {
+                            //isMarkersInBoundary(errorNotMarkers);
+                            return;
+                        }
+
+                        if (place.geometry.viewport) {
+                            map.fitBounds(place.geometry.viewport); // Масштабування до області місця.
+                        } else {
+                            map.setCenter(place.geometry.location); // Центрування карти на місці.
+                        }
+
+                        isMarkersInBoundary(errorNotMarkers);
+                    };
+                };
+
+                // parse json file
+                async function parseCsv() {
+                    async function fetchData(url) {
+                        try {
+                            const response = await fetch(url);
+                            if (!response.ok) {
+                                throw new Error('HTTP error ' + response.status);
+                            }
+                            return await response.json();
+                        } catch (error) {
+                            throw error;
+                        }
+                    }
+
+                    async function handleData(url, handler) {
+                        try {
+                            let data = await fetchData(url);
+                            handler(data);
+                        } catch (error) {
+                            console.error(error);
+                        }
+                    }
+
+                    await handleData(countriesUrl, storeCountryCodes);
+                    await handleData(fileUrl, countryL);
+                }
+
+                function storeCountryCodes(data) {
+                    countryCodesArray = data;
+                }
+
+                // Create country list
+                function countryL(data) {
+                    //(data);
+                    const selectItemsArr = [];
+                    let countryLang = 'country_' + currentLang;
+                    let countryLangEn = 'country_en';
+
+                    const uniqueCountries = data.map((obj) => `${obj[countryLang]},${obj[countryLangEn]}`);
+                    const uniqueCombinations = [...new Set(uniqueCountries)];
+
+                    const uniqueObjects = uniqueCombinations.map((combination) => {
+                        const [country, anotherEn] = combination.split(',');
+                        return {
+                            [countryLang]: country,
+                            [countryLangEn]: anotherEn,
+                        };
+                    });
+
+                    function getCountryCode(countryName) {
+                        const country = countryCodesArray.find((c) => c.country === countryName);
+                        return country ? country.iso2 : null;
+                    }
+
+                    selectWrap.innerHTML = '';
+                    uniqueObjects.forEach(function (item) {
+                        let placeItem = document.createElement('li');
+                        placeItem.classList.add('select__item');
+                        placeItem.dataset.code = getCountryCode(item.country_en);
+                        placeItem.textContent = item[countryLang];
+                        selectItemsArr.push(placeItem);
+                    });
+                    const sortSelectItems = selectItemsArr.sort((a, b) => a.textContent.localeCompare(b.textContent));
+                    sortSelectItems.forEach((item) => selectWrap.appendChild(item));
+
+                    selectItems = mapSection.querySelectorAll('.map__select .select__item');
+
+                    //Country codes array
+                    selectItems.forEach(function (item) {
+                        let code = item.dataset.code;
+                        if (code === '') return;
+                        countryList.push(code);
+                    });
+
+                    data.forEach(function (item) {
+                        let markerItem = document.createElement('span');
+                        markerItem.classList.add('map__marker');
+                        markerItem.dataset.lat = item.latitude;
+                        markerItem.dataset.lng = item.longitude;
+                        markerItem.dataset.icon = marker_icon;
+                        markerItem.dataset.infoTitle = item.title;
+                        markerItem.dataset.infoTitleHref = item.website;
+                        markerItem.dataset.infoText = `${item.address} ${item.address_number}`;
+                        markerItem.dataset.infoCity = `${item.zip} ${item.city}`;
+                        markerItem.dataset.infoEmail = item.email;
+                        markerItem.dataset.infoPhone = item.phone;
+                        mapMarkerWrapper.appendChild(markerItem);
+                    });
+
+                    addMarkers();
+                    addMarkerCluster();
+                    addSelectCountry();
+                    customSelectInit();
+                }
+
+                // select country
+                var addSelectCountry = function addSelectCountry() {
+                    // select country
+                    var selectCountry = function selectCountry(target) {
+                        let name = target.textContent;
+                        let value = target.dataset.code;
+
+                        focusOnCountry(name, map, 'country');
+                        input.value = '';
+                        resetErrors();
+
+                        if (value) {
+                            autocomplete.setComponentRestrictions({country: value});
+                        } else {
+                            autocomplete.setComponentRestrictions({country: countryList});
+                        }
+                    };
+
+                    // events
+                    selectItems.forEach(function (item) {
+                        return item.addEventListener('click', function (_ref4) {
+                            var target = _ref4.target;
+                            return selectCountry(target);
+                        });
+                    });
+                };
+
+                // init map
+                var init = function init() {
+                    map = new google.maps.Map(mapBlock, {
+                        center: defaultCoords,
+                        zoom: zoom,
+                        maxZoom: 24,
+                        minZoom: 3,
+                        scrollwheel: false,
+                        disableDefaultUI: true,
+                        fullscreenControl: true,
+                        fullscreenControlOptions: {
+                            position: google.maps.ControlPosition.RIGHT_BOTTOM,
+                        },
+                        zoomControl: true,
+                        zoomControlOptions: {
+                            position: google.maps.ControlPosition.RIGHT_TOP,
+                        },
+                        styles: [
+                            {
+                                "elementType": "geometry",
+                                "stylers": [
+                                    {
+                                        "color": "#f5f5f5"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "labels.icon",
+                                "stylers": [
+                                    {
+                                        "visibility": "off"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "labels.text.fill",
+                                "stylers": [
+                                    {
+                                        "color": "#616161"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "labels.text.stroke",
+                                "stylers": [
+                                    {
+                                        "color": "#f5f5f5"
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "administrative.land_parcel",
+                                "elementType": "labels.text.fill",
+                                "stylers": [
+                                    {
+                                        "color": "#bdbdbd"
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "poi",
+                                "elementType": "geometry",
+                                "stylers": [
+                                    {
+                                        "color": "#eeeeee"
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "poi",
+                                "elementType": "labels.text.fill",
+                                "stylers": [
+                                    {
+                                        "color": "#757575"
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "poi.park",
+                                "elementType": "geometry",
+                                "stylers": [
+                                    {
+                                        "color": "#e5e5e5"
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "poi.park",
+                                "elementType": "labels.text.fill",
+                                "stylers": [
+                                    {
+                                        "color": "#9e9e9e"
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "road",
+                                "elementType": "geometry",
+                                "stylers": [
+                                    {
+                                        "color": "#ffffff"
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "road.arterial",
+                                "elementType": "labels.text.fill",
+                                "stylers": [
+                                    {
+                                        "color": "#757575"
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "road.highway",
+                                "elementType": "geometry",
+                                "stylers": [
+                                    {
+                                        "color": "#dadada"
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "road.highway",
+                                "elementType": "labels.text.fill",
+                                "stylers": [
+                                    {
+                                        "color": "#616161"
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "road.local",
+                                "elementType": "labels.text.fill",
+                                "stylers": [
+                                    {
+                                        "color": "#9e9e9e"
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "transit.line",
+                                "elementType": "geometry",
+                                "stylers": [
+                                    {
+                                        "color": "#e5e5e5"
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "transit.station",
+                                "elementType": "geometry",
+                                "stylers": [
+                                    {
+                                        "color": "#eeeeee"
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "water",
+                                "elementType": "geometry",
+                                "stylers": [
+                                    {
+                                        "color": "#c9c9c9"
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "water",
+                                "elementType": "labels.text.fill",
+                                "stylers": [
+                                    {
+                                        "color": "#9e9e9e"
+                                    }
+                                ]
+                            }
+                        ]
+                        ,
+                    });
+                    addLocationBtn();
+                    addAutocomplete();
+                };
+                init();
+            }
+        };
+        mapInit();
+    });
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSAP Text Split Animation</title>
+    <style>
+        body {
+            padding: 200vh 0 0 0;
+        }
+
+        .trigger {
+            height: 100vh;
+        }
+
+        .word {
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .text {
+            font-size: 3rem;
+            /*opacity: 0;*/
+            display: inline-block;
+            overflow: hidden;
+        }
+
+        .char {
+            opacity: 0;
+            display: inline-block;
+            transform: translateY(100%);
+        }
+    </style>
+</head>
+<body>
+<div class="trigger">
+    <div class="text">Анімація тексту з GSAP тільки для великого тексту lorem ipsum</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const textElement = document.querySelector('.text');
+        const textContent = textElement.textContent;
+
+        // Розбиваємо текст на слова
+        textElement.innerHTML = textContent.split(" ").map(word => {
+            // Розбиваємо кожне слово на букви
+            const letters = word.split("").map(letter => `<span class="char">${letter}</span>`).join("");
+            return `<span class="word">${letters}&nbsp;</span>`; // Обгортаємо слово і додаємо пробіл
+        }).join("");
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".trigger",
+                start: "top 80%", // Коли верх блоку досягає 80% від вікна
+                end: "bottom 20%", // Коли низ блоку досягає 20% від вікна
+                toggleActions: "play none none reverse"
+            }
+        });
+
+        tl.to(".char", {
+            y: 0,
+            opacity: 1,
+            stagger: 0.05,
+            duration: 0.5,
+            ease: "power2.out",
+        });
+
+        // Респонсивність без перезавантаження сторінки
+        window.addEventListener("resize", () => {
+            ScrollTrigger.refresh();
+        });
+    });
+</script>
+</body>
+</html>

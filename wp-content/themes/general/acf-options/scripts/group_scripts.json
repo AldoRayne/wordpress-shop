@@ -1,0 +1,85 @@
+{
+    "key": "group_scripts",
+    "title": "Scripts",
+    "fields": [
+        {
+            "key": "field_6571a914b3a3d",
+            "label": "Head",
+            "name": "scripts_head",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 16,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_6571a914b3a2d",
+            "label": "Boby",
+            "name": "scripts_body",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 16,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_6571a914b3a1d",
+            "label": "Footer",
+            "name": "scripts_footer",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 16,
+            "placeholder": "",
+            "new_lines": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "scripts"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1731310662
+}

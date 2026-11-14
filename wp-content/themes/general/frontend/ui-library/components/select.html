@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choices.js на чистом JS</title>
+  <link href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" rel="stylesheet" />
+</head>
+<body>
+<label for="select1">Обычный Select 1:</label>
+<select id="select1" class="regular-select" style="width: 50%;">
+  <option value="option1">Option 1</option>
+  <option value="option2">Option 2</option>
+  <option value="option3">Option 3</option>
+  <option value="option4">Option 4</option>
+</select>
+
+<label for="select2">Обычный Select 2:</label>
+<select id="select2" class="regular-select" style="width: 50%;">
+  <option value="option1">Option 1</option>
+  <option value="option2">Option 2</option>
+  <option value="option3">Option 3</option>
+  <option value="option4">Option 4</option>
+</select>
+
+<label for="multi-select1">Мультиселект 1:</label>
+<select id="multi-select1" class="multi-select" multiple="multiple" style="width: 50%;">
+  <option value="option1">Option 1</option>
+  <option value="option2">Option 2</option>
+  <option value="option3">Option 3</option>
+  <option value="option4">Option 4</option>
+</select>
+
+<label for="multi-select2">Мультиселект 2:</label>
+<select id="multi-select2" class="multi-select" multiple="multiple" style="width: 50%;">
+  <option value="option1">Option 1</option>
+  <option value="option2">Option 2</option>
+  <option value="option3">Option 3</option>
+  <option value="option4">Option 4</option>
+</select>
+
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Инициализация обычных селектов
+    const regularSelects = document.querySelectorAll('.regular-select');
+    regularSelects.forEach(function(select) {
+      new Choices(select, {
+        searchEnabled: false,
+        itemSelectText: '',
+        removeItemButton: true
+      });
+    });
+
+    // Инициализация мультиселектов
+    const multiSelects = document.querySelectorAll('.multi-select');
+    multiSelects.forEach(function(select) {
+      new Choices(select, {
+        removeItemButton: true,
+        placeholderValue: 'Выберите опции'
+      });
+    });
+  });
+</script>
+</body>
+</html>
